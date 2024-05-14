@@ -1,51 +1,27 @@
-import styled from "styled-components";
+export const StyledNavigationBar = ({ children }) => (
+  <nav className="h-16 text-blueGray-800 flex items-center justify-between bg-warmGray-100 mt-8 w-full px-5">
+    {children}
+  </nav>
+);
 
-export const StyledNavigationBar = styled.nav`
-    height: 70px;
-    color: #14242F;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #FFFCF0;
-    margin-top: 30px;
-    width: 100%;
-    padding: 0 20px;
-`;
+export const StyledLogoContainer = ({ children }) => (
+  <div className="flex items-center text-4xl">{children}</div>
+);
 
-export const StyledLogoContainer = styled.div`
-    display: flex;
-    align-items: center;
-    font-size: 40px;
-`;
+export const StyledLogoText = ({ children }) => (
+  <h1 className="ml-2.5">{children}</h1>
+);
 
-export const StyledLogoText = styled.h1`
-    margin-left: 10px; /* Adjust margin as needed */
-`;
+export const StyledNavLinkSection = ({ children }) => (
+  <div className="flex items-center justify-end w-128 mr-5">{children}</div>
+);
 
-export const StyledNavLinkSection = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 500px;
-    margin-right: 5%;
-`;
+export const StyledNavLink = ({ children }) => (
+  <a className="text-blueGray-800 no-underline transition-all duration-300 text-xl hover:font-medium cursor-pointer">
+    {children}
+  </a>
+);
 
-export const StyledNavLink = styled.a`
-    color: #14242F;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 22px;
-
-    &:hover {
-        font-weight: 500;
-        transition: 0.3s;
-    }
-    cursor: pointer;
-`;
-
-export const LinkDivider = styled.div`
-    width: 1px;
-    height: 35px;
-    background-color: #828282;
-    margin: auto;
-`;
+export const LinkDivider = () => (
+  <div className="w-px h-9 bg-gray-400 mx-auto"></div>
+);
