@@ -1,21 +1,36 @@
+import { useEffect, useState } from 'react';
 import getSystembolagetData from "@/app/api/getSystembolagetData";
 
-const ProductList = async () => {
-    console.log("Vi är i fetchData");
-    const data = await getSystembolagetData();
-    if (data) {
-        console.log('Data fetched successfully:', data);
-    } else {
-        console.log('Failed to fetch data');
+const ProductList = () => {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await getSystembolagetData();
+            if (result) {
+                console.log(result);
+                setData(result);
+            } else {
+                console.log('Failed to fetch data');
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    if (!data) {
+        return <div>Loading...</div>;
     }
 
     return (
-        console.log(data), data
-    )
-
-
+        <div>
+            {data.map(product => (
+                <div key={product.productId}>
+                    {product.productNameBold}
+                </div>
+            ))}
+        </div>
+    );
 };
-
-
 
 export default ProductList;
