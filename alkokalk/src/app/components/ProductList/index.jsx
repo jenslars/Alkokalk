@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import getSystembolagetData from "@/app/api/getSystembolagetData";
-import {
-  StyledProductList,
-  StyledProduct,
-  StyledTable,
-  StyledHeader,
-  StyledCell,
-} from "./styles";
+import { StyledTable, StyledHeader, StyledCell, SkeletonRow } from "./styles";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -66,9 +60,10 @@ const ProductList = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <StyledCell>Loading...</StyledCell>
-          </tr>
+          <SkeletonRow />
+          <SkeletonRow />
+          <SkeletonRow />
+          <SkeletonRow />
         </tbody>
       </StyledTable>
     );

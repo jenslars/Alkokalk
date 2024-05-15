@@ -1,4 +1,35 @@
-import styled from "styled-components";
+import { styled, keyframes } from "styled-components";
+
+const loading = keyframes`
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+`;
+
+const SkeletonCell = styled.td`
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200%;
+  animation: ${loading} 1.5s infinite;
+  border: 1px solid #000;
+  padding: 10px;
+`;
+
+export const SkeletonRow = () => (
+  <tr>
+    <SkeletonCell />
+    <SkeletonCell />
+    <SkeletonCell />
+    <SkeletonCell />
+    <SkeletonCell />
+    <SkeletonCell />
+    <SkeletonCell />
+    <SkeletonCell />
+  </tr>
+);
 
 export const StyledTable = styled.table`
   width: 100%;
