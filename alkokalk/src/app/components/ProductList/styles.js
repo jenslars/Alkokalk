@@ -15,7 +15,7 @@ const SkeletonCell = styled.td`
   background-size: 200%;
   animation: ${loading} 1.5s infinite;
   border: 1px solid #000;
-  padding: 10px;
+  padding: 20px;
 `;
 
 export const SkeletonRow = () => (
