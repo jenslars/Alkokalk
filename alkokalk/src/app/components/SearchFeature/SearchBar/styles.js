@@ -9,7 +9,7 @@ export const StyledSearchBar = styled.form`
     background-color: #FFFEF8;
     border-radius: 100px;
     width: 300px;
-    border: 1px solid #DDDDDD;
+    border: 1px solid #BABABA;
     &:focus-within {
         outline: 2px solid #3C9054;
     }
@@ -36,7 +36,7 @@ export const StyledInput = styled.input`
         transition: background-color 0.3s ease;
         background-image: url('images/searchIcon.png');
         background-repeat: no-repeat;
-        background-position: 65px;
+        background-position: 45px;
         background-size: 20px;
         padding-right: 40px;
         font-weight: 600;
@@ -48,6 +48,7 @@ export const StyledInput = styled.input`
 `;
 
 export const RecentSearchesContainer = styled.div`
+    position: absolute;
     margin-top: 5px;
     background-color: #ffffff;
     border: 1px solid #ccc;

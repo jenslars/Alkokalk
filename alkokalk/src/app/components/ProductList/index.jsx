@@ -4,7 +4,7 @@ import { StyledTable, StyledHeader, StyledCell, SkeletonRow } from "./styles";
 import { setItem, getItem, setMeta, getMeta } from '@/app/utils/indexedDB';
 import { useIntersectionObserver } from "./intersectionObserver";
 
-const ProductList = () => {
+const ProductList = ({ searchResults }) => {
   const [products, setProducts] = useState([]);
   const REFRESH_INTERVAL = 24 * 60 * 60 * 1000;
   const [page, setPage] = useState(1);
@@ -50,6 +50,27 @@ const ProductList = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (searchResults.length) {
+      const updatedProducts = searchResults
+        .map((product) => ({
+          ...product,
+          alcoholAmountMl: calculateAlcoholAmountMl(
+            product.alcoholPercentage,
+            product.volume
+          ),
+          apk: calculateAPK(
+            product.alcoholPercentage,
+            product.volume,
+            product.price
+          ),
+        }))
+        .sort((a, b) => b.apk - a.apk);
+
+      setProducts(updatedProducts);
+    }
+  }, [searchResults]);
 
   useIntersectionObserver({
     target: lastProductRef,

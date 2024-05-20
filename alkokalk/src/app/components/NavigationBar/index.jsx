@@ -17,7 +17,7 @@ const NavigationBar = () => {
                 <LinkDivider></LinkDivider>
                 <StyledNavLink>Alkokalk</StyledNavLink>
                 <LinkDivider></LinkDivider>
-                <StyledNavLink>About</StyledNavLink>
+                <StyledNavLink>Om</StyledNavLink>
                 <LinkDivider></LinkDivider>
                 <StyledNavLink>Github</StyledNavLink>
                 <LinkDivider></LinkDivider>

@@ -18,10 +18,10 @@ export const ButtonContainer = styled.div`
 `;
 
 export const StyledButton = styled.button`
-    margin: 5px 0;
-    padding: 10px 20px;
+    color: #fffcf0; 
+    font-size: 14px;
+    padding: 5px 20px;
     background-color: #3C9054;
-    color: #14242F;
     border: none;
     border-radius: 25px;
     cursor: pointer;
