@@ -44,7 +44,37 @@ export const StyledInput = styled.input`
         font-weight: 600;
 
         &:hover {
-            background-color: #0056b3;
+            background-color: #235431;
+        }
+    }
+`;
+
+export const RecentSearchesContainer = styled.div`
+    margin-top: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    width: 295px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    h3 {
+        margin: 0 0 10px 0;
+        font-size: 16px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+
+            &:last-child {
+                border-bottom: none;
+            }
         }
     }
 `;
