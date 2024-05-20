@@ -20,7 +20,6 @@ const SearchBar = () => {
         const searchString = event.target.elements.search.value.toLowerCase();
         console.log('Form submitted with search string:', searchString);
 
-        // Save search to cookies
         const updatedSearchHistory = [...searchHistory, searchString];
         setSearchHistory(updatedSearchHistory);
         Cookies.set('searchHistory', JSON.stringify(updatedSearchHistory), { expires: 7 });
@@ -57,11 +56,6 @@ const SearchBar = () => {
                     </ul>
                 </RecentSearchesContainer>
             )}
-            <ul>
-                {results.map(item => (
-                    <li key={item.productId}>{item.productNameBold}</li>
-                ))}
-            </ul>
         </div>
     );
 }

@@ -19,7 +19,7 @@ export const StyledLogoContainer = styled.div`
 `;
 
 export const StyledLogoText = styled.h1`
-    margin-left: 10px; /* Adjust margin as needed */
+    margin-left: 10px;
 `;
 
 export const StyledNavLinkSection = styled.div`

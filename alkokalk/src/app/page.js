@@ -8,8 +8,7 @@ export default function Home() {
   return (
     <main>
       <NavigationBar></NavigationBar>
-      <SearchBar></SearchBar>
-      {/* <ProductList></ProductList> */}
+      <ProductList></ProductList>
     </main>
   );
 }

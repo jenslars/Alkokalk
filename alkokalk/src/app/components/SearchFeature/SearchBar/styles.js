@@ -10,7 +10,6 @@ export const StyledSearchBar = styled.form`
     border-radius: 100px;
     width: 300px;
     border: 1px solid #DDDDDD;
-
     &:focus-within {
         outline: 2px solid #3C9054;
     }
@@ -22,7 +21,6 @@ export const StyledInput = styled.input`
     border-radius: 4px;
     font-size: 14px;
     background-color: #FFFEF8;
-
     &[type="text"] {
         flex: 1;
         &:focus {
@@ -50,10 +48,10 @@ export const StyledInput = styled.input`
 `;
 
 export const RecentSearchesContainer = styled.div`
-    margin-top: 10px;
+    margin-top: 5px;
     background-color: #ffffff;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 15px;
     padding: 10px;
     width: 295px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
