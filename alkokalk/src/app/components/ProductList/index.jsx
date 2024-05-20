@@ -1,34 +1,47 @@
 import { useEffect, useState } from "react";
 import getSystembolagetData from "@/app/api/getSystembolagetData";
 import { StyledTable, StyledHeader, StyledCell, SkeletonRow } from "./styles";
+import { setItem, getItem, setMeta, getMeta } from '@/app/utils/indexedDB';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const REFRESH_INTERVAL = 24 * 60 * 60 * 1000;
 
   useEffect(() => {
     const fetchData = async () => {
-      let data = await getSystembolagetData();
-      if (data) {
-        data = data
-          .map((product) => ({
-            ...product,
-            alcoholAmountMl: calculateAlcoholAmountMl(
-              product.alcoholPercentage,
-              product.volume
-            ),
-            apk: calculateAPK(
-              product.alcoholPercentage,
-              product.volume,
-              product.price
-            ),
-          }))
-          .sort((a, b) => b.apk - a.apk);
+      const lastFetch = await getMeta('lastFetch');
+      const now = Date.now();
 
-        setProducts(data);
-        console.log(data);
-      } else {
-        console.log("Failed to fetch data");
+      let data = await getItem('systembolagetData');
+
+      if (!data || !lastFetch || (now - lastFetch > REFRESH_INTERVAL)) {
+        data = await getSystembolagetData();
+        if (data) {
+          await setItem('systembolagetData', data);
+          await setMeta('lastFetch', now);
+        } else {
+          console.log("Failed to fetch data");
+          return;
+        }
       }
+
+      data = data
+        .map((product) => ({
+          ...product,
+          alcoholAmountMl: calculateAlcoholAmountMl(
+            product.alcoholPercentage,
+            product.volume
+          ),
+          apk: calculateAPK(
+            product.alcoholPercentage,
+            product.volume,
+            product.price
+          ),
+        }))
+        .sort((a, b) => b.apk - a.apk);
+
+      setProducts(data);
+      console.log(data);
     };
 
     fetchData();
@@ -44,7 +57,6 @@ const ProductList = () => {
   };
 
   if (!products.length) {
-    // Här kan vi returnera skeleton istället? //Jens
     return (
       <StyledTable>
         <thead>
