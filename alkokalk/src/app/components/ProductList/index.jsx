@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import getSystembolagetData from "@/app/api/getSystembolagetData";
 import { StyledTable, StyledHeader, StyledCell, SkeletonRow } from "./styles";
+import { useIntersectionObserver } from "./intersectionObserver";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);
+  const productsPerPage = 20;
+  const lastProductRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +38,12 @@ const ProductList = () => {
     fetchData();
   }, []);
 
+  useIntersectionObserver({
+    target: lastProductRef,
+    onIntersect: () => setPage((prevPage) => prevPage + 1),
+    threshold: 1.0,
+  });
+
   const calculateAlcoholAmountMl = (alcoholPercentage, volume) => {
     return (alcoholPercentage / 100) * volume;
   };
@@ -44,7 +54,6 @@ const ProductList = () => {
   };
 
   if (!products.length) {
-    // Här kan vi returnera skeleton istället? //Jens
     return (
       <StyledTable>
         <thead>
@@ -84,32 +93,37 @@ const ProductList = () => {
         </tr>
       </thead>
       <tbody>
-        {products.map((product, index) => (
-          <tr key={index}>
-            <StyledCell className="hide-on-mobile">
-              {product.country}
-            </StyledCell>
-            <StyledCell>{product.productNameBold}</StyledCell>
-            <StyledCell className="hide-on-mobile">
-              {product.categoryLevel1}
-            </StyledCell>
-            <StyledCell>{product.price} kr</StyledCell>
-            <StyledCell>{product.volume} ml</StyledCell>
-            <StyledCell>{product.apk} ml/kr</StyledCell>
-            <StyledCell>
-              <button>Lägg till</button>
-            </StyledCell>
-            <StyledCell className="hide-on-mobile">
-              <a
-                href={`www.systembolaget.se/produkt/${product.categoryLevel1.toLowerCase()}/${product.productNameBold
-                  .replace(/\s+/g, "-")
-                  .toLowerCase()}-${product.productId}/`}
-              >
-                Länk till produkt
-              </a>
-            </StyledCell>
-          </tr>
-        ))}
+        {products
+          .slice(0, page * productsPerPage)
+          .map((product, index, self) => (
+            <tr
+              key={index}
+              ref={index === self.length - 1 ? lastProductRef : null}
+            >
+              <StyledCell className="hide-on-mobile">
+                {product.country}
+              </StyledCell>
+              <StyledCell>{product.productNameBold}</StyledCell>
+              <StyledCell className="hide-on-mobile">
+                {product.categoryLevel1}
+              </StyledCell>
+              <StyledCell>{product.price} kr</StyledCell>
+              <StyledCell>{product.volume} ml</StyledCell>
+              <StyledCell>{product.apk} ml/kr</StyledCell>
+              <StyledCell>
+                <button>Lägg till</button>
+              </StyledCell>
+              <StyledCell className="hide-on-mobile">
+                <a
+                  href={`www.systembolaget.se/produkt/${product.categoryLevel1.toLowerCase()}/${product.productNameBold
+                    .replace(/\s+/g, "-")
+                    .toLowerCase()}-${product.productId}/`}
+                >
+                  Länk till produkt
+                </a>
+              </StyledCell>
+            </tr>
+          ))}
       </tbody>
     </StyledTable>
   );
