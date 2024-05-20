@@ -9,7 +9,7 @@ export default function Home() {
     <main>
       <NavigationBar></NavigationBar>
       <SearchBar></SearchBar>
-      <ProductList></ProductList>
+      {/* <ProductList></ProductList> */}
     </main>
   );
 }
