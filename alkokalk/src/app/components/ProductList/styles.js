@@ -37,6 +37,9 @@ export const StyledTable = styled.table`
   border-collapse: collapse;
   overflow-x: auto;
 
+  tr:nth-child(even) {
+    background-color: #fff7d6;
+  }
   td:before {
     position: absolute;
     top: 6px;
@@ -46,6 +49,21 @@ export const StyledTable = styled.table`
     white-space: nowrap;
     content: attr(data-column);
   }
+
+  td > a {
+    color: #14242f;
+    text-decoration: none;
+
+    
+  }
+  td > a:hover {
+    transition: 0.2s;
+    ease-in-out;
+    font-size: 1.05em;
+    color: #3c9054;
+    text-decoration: underline;
+  }
+  
 
   .country:before {
     grid-area: country;
@@ -114,9 +132,6 @@ export const StyledTable = styled.table`
     td:nth-of-type(6) {
       grid-area: price;
       text-align: right;
-    }
-    tr:nth-child(even) {
-      background-color: #fff7d6;
     }
   }
 `;
