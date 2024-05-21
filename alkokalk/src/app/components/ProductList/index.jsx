@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import getSystembolagetData from "@/app/api/getSystembolagetData";
-import { StyledTable, StyledHeader, StyledCell, SkeletonRow } from "./styles";
+import { StyledTable, StyledHeader, StyledCell, SkeletonRow, NoResultsMessage } from "./styles";
 import { setItem, getItem, setMeta, getMeta } from '@/app/utils/indexedDB';
 import { useIntersectionObserver } from "./intersectionObserver";
 
@@ -71,14 +71,16 @@ const ProductList = ({ searchResults, resetProducts }) => {
         .sort((a, b) => b.apk - a.apk);
 
       setProducts(updatedProducts);
-      setPage(1); // Reset the page count when new search results are set
+      setPage(1);
+    } else if (searchResults.length === 0) {
+      setProducts([]);
     }
   }, [searchResults]);
 
   useEffect(() => {
     if (resetProducts) {
       setProducts(originalProducts);
-      setPage(1); // Reset the page count when resetting to the original list
+      setPage(1);
     }
   }, [resetProducts, originalProducts]);
 
@@ -97,21 +99,15 @@ const ProductList = ({ searchResults, resetProducts }) => {
     return (alcoholMl / price).toFixed(2);
   };
 
+  if (!products.length && searchResults.length === 0) {
+    return (
+      <NoResultsMessage>Inga resultat funna</NoResultsMessage>
+    );
+  }
+
   if (!products.length) {
     return (
       <StyledTable>
-        <thead>
-          <tr>
-            <StyledHeader>Ursprung</StyledHeader>
-            <StyledHeader>Namn</StyledHeader>
-            <StyledHeader>Sort</StyledHeader>
-            <StyledHeader>Pris</StyledHeader>
-            <StyledHeader>Volym</StyledHeader>
-            <StyledHeader>APK</StyledHeader>
-            <StyledHeader>Lägg till i din inköpslista</StyledHeader>
-            <StyledHeader>Länk</StyledHeader>
-          </tr>
-        </thead>
         <tbody>
           <SkeletonRow />
           <SkeletonRow />

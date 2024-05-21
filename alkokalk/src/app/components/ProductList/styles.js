@@ -89,3 +89,10 @@ export const StyledHeader = styled.th`
   border: 1px solid #000;
   padding: 10px;
 `;
+
+export const NoResultsMessage = styled.div`
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #ff0000;
+`;
