@@ -32,7 +32,8 @@ export const SkeletonRow = () => (
 );
 
 export const StyledTable = styled.table`
-  width: 100%;
+  width: calc(100% -120px);
+  margin: 0 60px;
   border-collapse: collapse;
   overflow-x: auto;
 
@@ -71,6 +72,8 @@ export const StyledTable = styled.table`
   }
 
   @media only screen and (max-width: 760px) {
+    width: 100%;
+    margin: 0;
     td {
       border: none;
     }
