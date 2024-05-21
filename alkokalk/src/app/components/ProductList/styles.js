@@ -32,50 +32,106 @@ export const SkeletonRow = () => (
 );
 
 export const StyledTable = styled.table`
-  width: 100%;
+  width: calc(100% -120px);
+  margin: 0 60px;
   border-collapse: collapse;
   overflow-x: auto;
 
-  @media (max-width: 768px) {
-    display: block;
+  tr:nth-child(even) {
+    background-color: #fff7d6;
+  }
+  td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    content: attr(data-column);
+  }
 
-    thead,
-    tbody,
-    th,
-    td,
-    tr {
-      display: block;
+  td > a {
+    color: #14242f;
+    text-decoration: none;
+
+    
+  }
+  td > a:hover {
+    transition: 0.2s;
+    ease-in-out;
+    font-size: 1.05em;
+    color: #3c9054;
+    text-decoration: underline;
+  }
+  
+
+  .country:before {
+    grid-area: country;
+  }
+
+  .name:before {
+    grid-area: name;
+  }
+
+  .category:before {
+    grid-area: category;
+  }
+
+  .price:before {
+    grid-area: price;
+  }
+
+  .apk:before {
+    grid-area: apk;
+  }
+
+  .vol:before {
+    grid-area: vol;
+  }
+
+  @media only screen and (max-width: 760px) {
+    width: 100%;
+    margin: 0;
+    td {
+      border: none;
     }
-
     thead tr {
       position: absolute;
       top: -9999px;
       left: -9999px;
     }
-
     tr {
-      border: 1px solid #ccc;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "country . price"
+        "name name name"
+        "category category category"
+        "volume . apk";
+      border: 1px solid black;
     }
 
-    td {
-      border: none;
-      border-bottom: 1px solid #eee;
-      position: relative;
-      padding-left: 50%;
+    td:nth-of-type(1) {
+      grid-area: country;
     }
-
-    td:before {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      width: 45%;
-      padding-right: 10px;
-      white-space: nowrap;
-      content: attr(data-column);
+    td:nth-of-type(2) {
+      grid-area: name;
     }
-
-    .hide-on-mobile {
-      display: none;
+    td:nth-of-type(3) {
+      grid-area: category;
+      text-align: left;
+    }
+    td:nth-of-type(4) {
+      grid-area: apk;
+      text-align: right;
+    }
+    td:nth-of-type(5) {
+      grid-area: volume;
+    }
+    td:nth-of-type(6) {
+      grid-area: price;
+      text-align: right;
     }
   }
 `;
