@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Cookies from 'js-cookie';
 import { setItem, getItem, setMeta, getMeta } from '@/app/utils/indexedDB';
-import { StyledSearchBar, StyledInput, RecentSearchesContainer } from './styles';
+import { StyledSearchBarDiv, StyledSearchBar, StyledInput, RecentSearchesContainer, ClearButton } from './styles';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, onReset }) => {
     const [searchHistory, setSearchHistory] = useState([]);
     const [isFocused, setIsFocused] = useState(false);
+    const [showClearButton, setShowClearButton] = useState(false);
     const searchBarRef = useRef(null);
 
     useEffect(() => {
@@ -27,6 +28,7 @@ const SearchBar = ({ onSearch }) => {
         });
 
         onSearch(filteredResults);
+        setShowClearButton(true);
         console.log('Filtered results:', filteredResults);
     };
 
@@ -43,7 +45,7 @@ const SearchBar = ({ onSearch }) => {
     };
 
     const handleSearchClick = (searchString) => {
-        setIsFocused(false); 
+        setIsFocused(false);
         performSearch(searchString);
     };
 
@@ -51,6 +53,11 @@ const SearchBar = ({ onSearch }) => {
         if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
             setIsFocused(false);
         }
+    };
+
+    const handleClearResults = () => {
+        onReset();
+        setShowClearButton(false);
     };
 
     useEffect(() => {
@@ -61,7 +68,7 @@ const SearchBar = ({ onSearch }) => {
     }, []);
 
     return (
-        <div ref={searchBarRef}>
+        <StyledSearchBarDiv ref={searchBarRef}>
             <StyledSearchBar onSubmit={handleSubmit}>
                 <StyledInput
                     name="search"
@@ -71,6 +78,9 @@ const SearchBar = ({ onSearch }) => {
                 />
                 <StyledInput type="submit" value="Sök" />
             </StyledSearchBar>
+            {showClearButton && (
+                <ClearButton onClick={handleClearResults}>Rensa sökresultat</ClearButton>
+            )}
             {isFocused && (
                 <RecentSearchesContainer>
                     <h3>Tidigare sökningar:</h3>
@@ -83,7 +93,7 @@ const SearchBar = ({ onSearch }) => {
                     </ul>
                 </RecentSearchesContainer>
             )}
-        </div>
+        </StyledSearchBarDiv>
     );
 }
 

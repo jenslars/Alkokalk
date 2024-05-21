@@ -1,6 +1,11 @@
 // styles.js
 import styled from 'styled-components';
 
+export const StyledSearchBarDiv = styled.div`
+    display:flex;
+
+`
+
 export const StyledSearchBar = styled.form`
     display: flex;
     justify-content: center;
@@ -49,7 +54,7 @@ export const StyledInput = styled.input`
 
 export const RecentSearchesContainer = styled.div`
     position: absolute;
-    margin-top: 5px;
+    margin-top: 52px;
     background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 15px;
@@ -75,5 +80,25 @@ export const RecentSearchesContainer = styled.div`
                 border-bottom: none;
             }
         }
+    }
+`;
+
+export const ClearButton = styled.button`
+    margin-left: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #3c9054;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+
+    background-image: url('images/closeIcon.png');
+    background-repeat: no-repeat;
+    background-position: 140px;
+    background-size: 15px;
+    padding-right: 40px;
+
+    &:hover {
+       
     }
 `;

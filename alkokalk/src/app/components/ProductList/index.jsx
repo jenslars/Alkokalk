@@ -4,8 +4,9 @@ import { StyledTable, StyledHeader, StyledCell, SkeletonRow } from "./styles";
 import { setItem, getItem, setMeta, getMeta } from '@/app/utils/indexedDB';
 import { useIntersectionObserver } from "./intersectionObserver";
 
-const ProductList = ({ searchResults }) => {
+const ProductList = ({ searchResults, resetProducts }) => {
   const [products, setProducts] = useState([]);
+  const [originalProducts, setOriginalProducts] = useState([]);
   const REFRESH_INTERVAL = 24 * 60 * 60 * 1000;
   const [page, setPage] = useState(1);
   const productsPerPage = 20;
@@ -45,6 +46,7 @@ const ProductList = ({ searchResults }) => {
         .sort((a, b) => b.apk - a.apk);
 
       setProducts(data);
+      setOriginalProducts(data); // Save the original products list
       console.log(data);
     };
 
@@ -69,8 +71,16 @@ const ProductList = ({ searchResults }) => {
         .sort((a, b) => b.apk - a.apk);
 
       setProducts(updatedProducts);
+      setPage(1); // Reset the page count when new search results are set
     }
   }, [searchResults]);
+
+  useEffect(() => {
+    if (resetProducts) {
+      setProducts(originalProducts);
+      setPage(1); // Reset the page count when resetting to the original list
+    }
+  }, [resetProducts, originalProducts]);
 
   useIntersectionObserver({
     target: lastProductRef,
@@ -151,7 +161,7 @@ const ProductList = ({ searchResults }) => {
                 <a
                   href={`www.systembolaget.se/produkt/${product.categoryLevel1.toLowerCase()}/${product.productNameBold
                     .replace(/\s+/g, "-")
-                    .toLowerCase()}-${product.productId}/`}
+                    .toLowerCase()}-${product.productNumber}/`}
                 >
                   Länk till produkt
                 </a>
