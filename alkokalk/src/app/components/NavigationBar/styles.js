@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledNavigationBar = styled.nav`
-  height: 70%;
+  height: 70px;
   color: #14242f;
   display: flex;
   flex-flow: row nowrap;
