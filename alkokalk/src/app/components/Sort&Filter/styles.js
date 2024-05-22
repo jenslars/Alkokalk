@@ -41,6 +41,10 @@ export const StyledSelect = styled.select`
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #235431;
+    }
 `;
 
 export const StyledText = styled.p`
