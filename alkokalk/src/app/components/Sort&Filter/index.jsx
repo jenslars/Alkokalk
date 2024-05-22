@@ -19,7 +19,7 @@ const SortFilter = ({ onSort, onFilter, onSearch, onReset }) => {
                 <StyledButton onClick={onFilter}>Filtrera efter kategori</StyledButton>
                 <SearchBar onSearch={onSearch} onReset={onReset} />
             </ButtonContainer>
-            <StyledText>Sorteringstyp: Från högst APK till lägst</StyledText>
+            <StyledText>Sorteringstyp: {isDescending ? 'Från högst APK till lägst' : 'Från lägst APK till högst'}</StyledText>
         </StyledSortFilterContainer>
     );
 }
