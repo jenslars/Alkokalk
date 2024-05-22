@@ -8,6 +8,7 @@ import ProductList from "./components/ProductList";
 export default function Home() {
   const [searchResults, setSearchResults] = useState([]);
   const [resetProducts, setResetProducts] = useState(false);
+  const [isDescending, setIsDescending] = useState(false);
 
   const handleSearch = (results) => {
     setSearchResults(results);
@@ -19,11 +20,16 @@ export default function Home() {
     setResetProducts(true);
   };
 
+  const handleSort = () => {
+    setIsDescending((prev) => !prev);
+  };
+
+
   return (
     <main>
       <NavigationBar />
-      <SortFilter onSearch={handleSearch} onReset={handleReset} />
-      <ProductList searchResults={searchResults} resetProducts={resetProducts} />
+      <SortFilter onSearch={handleSearch} onReset={handleReset} onSort={handleSort} />
+      <ProductList searchResults={searchResults} resetProducts={resetProducts} isDescending={isDescending} />
     </main>
   );
 }

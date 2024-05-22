@@ -6,7 +6,7 @@ import { useIntersectionObserver } from "./intersectionObserver";
 import Image from "next/image";
 import Link from "next/link";
 
-const ProductList = ({ searchResults, resetProducts }) => {
+const ProductList = ({ searchResults, resetProducts, isDescending }) => {
   const [products, setProducts] = useState([]);
   const [originalProducts, setOriginalProducts] = useState([]);
   const REFRESH_INTERVAL = 24 * 60 * 60 * 1000;
@@ -86,11 +86,27 @@ const ProductList = ({ searchResults, resetProducts }) => {
     }
   }, [resetProducts, originalProducts]);
 
+  useEffect(() => {
+    const sortedProducts = sortProducts(products);
+    setProducts(sortedProducts);
+  }, [isDescending]);
+
   useIntersectionObserver({
     target: lastProductRef,
     onIntersect: () => setPage((prevPage) => prevPage + 1),
     threshold: 1.0,
   });
+
+  const sortProducts = (products) => {
+    const sortedProducts = [...products].sort((a, b) => {
+      if (isDescending) {
+        return b.apk - a.apk;
+      } else {
+        return a.apk - b.apk;
+      }
+    });
+    return sortedProducts;
+  };
 
   const calculateAlcoholAmountMl = (alcoholPercentage, volume) => {
     return (alcoholPercentage / 100) * volume;
