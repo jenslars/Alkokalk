@@ -9,6 +9,7 @@ export default function Home() {
   const [searchResults, setSearchResults] = useState([]);
   const [resetProducts, setResetProducts] = useState(false);
   const [isDescending, setIsDescending] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   const handleSearch = (results) => {
     setSearchResults(results);
@@ -24,12 +25,24 @@ export default function Home() {
     setIsDescending((prev) => !prev);
   };
 
+  const handleFilter = (category) => {
+    setSelectedCategory(category);
+  };
 
   return (
     <main>
       <NavigationBar />
-      <SortFilter onSearch={handleSearch} onReset={handleReset} onSort={handleSort} />
-      <ProductList searchResults={searchResults} resetProducts={resetProducts} isDescending={isDescending} />
+      <SortFilter 
+      onSearch={handleSearch} 
+      onReset={handleReset} 
+      onSort={handleSort} 
+      onFilter={handleFilter} />
+
+      <ProductList 
+      searchResults={searchResults} 
+      resetProducts={resetProducts} 
+      isDescending={isDescending} 
+      selectedCategory={selectedCategory} />
     </main>
   );
 }

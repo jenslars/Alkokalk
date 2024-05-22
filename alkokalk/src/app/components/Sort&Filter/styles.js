@@ -32,6 +32,17 @@ export const StyledButton = styled.button`
     }
 `;
 
+export const StyledSelect = styled.select`
+    color: #fffcf0; 
+    font-size: 14px;
+    padding: 5px 20px;
+    background-color: #3C9054;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+`;
+
 export const StyledText = styled.p`
     font-size: 18px;
     color: #14242F;

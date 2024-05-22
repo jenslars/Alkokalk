@@ -6,7 +6,7 @@ import { useIntersectionObserver } from "./intersectionObserver";
 import Image from "next/image";
 import Link from "next/link";
 
-const ProductList = ({ searchResults, resetProducts, isDescending }) => {
+const ProductList = ({ searchResults, resetProducts, isDescending, selectedCategory }) => {
   const [products, setProducts] = useState([]);
   const [originalProducts, setOriginalProducts] = useState([]);
   const REFRESH_INTERVAL = 24 * 60 * 60 * 1000;
@@ -90,6 +90,19 @@ const ProductList = ({ searchResults, resetProducts, isDescending }) => {
     const sortedProducts = sortProducts(products);
     setProducts(sortedProducts);
   }, [isDescending]);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      const filteredProducts = originalProducts.filter(product =>
+        product.categoryLevel1.toLowerCase() === selectedCategory.toLowerCase()
+      );
+      setProducts(filteredProducts);
+      setPage(1);
+    } else {
+      setProducts(originalProducts);
+      setPage(1);
+    }
+  }, [selectedCategory, originalProducts]);
 
   useIntersectionObserver({
     target: lastProductRef,
