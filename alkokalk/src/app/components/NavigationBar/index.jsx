@@ -19,7 +19,7 @@ const NavigationBar = () => {
   
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 1150) {
         setImageSize({ width: 120, height: 120 });
       } else {
         setImageSize({ width: 180, height: 180 });
@@ -37,7 +37,7 @@ const NavigationBar = () => {
   };
 
   const links = [
-    { title: "Alkokalk", href: "/home" },
+    { title: "Alkokalk", href: "/" },
     { title: "Om", href: "/about" },
     { title: "Github", href: "https://github.com/jenslars/Alkokalk" },
   ];
@@ -57,8 +57,10 @@ const NavigationBar = () => {
           </StyledImageContainer>
           <StyledLogoText>ALKOKALK</StyledLogoText>
         </StyledLogoContainer>
-        <DropdownBtn onClick={toggleDropdownMenu}
-          title="Display menu" >
+        <DropdownBtn 
+            onClick={toggleDropdownMenu}
+            className={isDropdownVisible ? 'active' : ''}
+            title="Display menu">
         </DropdownBtn>
         <StyledNavLinkSection className="links">
           {links.map((link, index) => (
@@ -71,18 +73,16 @@ const NavigationBar = () => {
           ))}
         </StyledNavLinkSection>
       </StyledNavigationBar>
-      {isDropdownVisible && (
-        <DropdownMenu>
-          {links.map((link, index) => (
-            <React.Fragment key={index}>
-              <Link href={link.href} style={{ textDecoration: "none" }}>
-                <StyledNavLink>{link.title}</StyledNavLink>
-              </Link>
-              <LinkDivider />
-            </React.Fragment>
-          ))}
-        </DropdownMenu>
-      )}
+      <DropdownMenu className={isDropdownVisible ? 'active' : ''}>
+        {links.map((link, index) => (
+          <React.Fragment key={index}>
+            <Link href={link.href} style={{ textDecoration: "none" }}>
+              <StyledNavLink>{link.title}</StyledNavLink>
+            </Link>
+            <LinkDivider />
+          </React.Fragment>
+        ))}
+      </DropdownMenu>
     </div>
   );
 };
