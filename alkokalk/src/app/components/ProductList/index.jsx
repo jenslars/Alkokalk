@@ -9,6 +9,8 @@ import Link from "next/link";
 const ProductList = ({ searchResults, resetProducts, isDescending, selectedCategory }) => {
   const [products, setProducts] = useState([]);
   const [originalProducts, setOriginalProducts] = useState([]);
+  const [searchAttempted, setSearchAttempted] = useState(false);
+  const [loading, setLoading] = useState(true);
   const REFRESH_INTERVAL = 24 * 60 * 60 * 1000;
   const [page, setPage] = useState(1);
   const productsPerPage = 20;
@@ -16,6 +18,7 @@ const ProductList = ({ searchResults, resetProducts, isDescending, selectedCateg
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true); 
       const lastFetch = await getMeta("lastFetch");
       const now = Date.now();
 
@@ -28,6 +31,7 @@ const ProductList = ({ searchResults, resetProducts, isDescending, selectedCateg
           await setMeta("lastFetch", now);
         } else {
           console.log("Failed to fetch data");
+          setLoading(false);
           return;
         }
       }
@@ -49,6 +53,7 @@ const ProductList = ({ searchResults, resetProducts, isDescending, selectedCateg
 
       setProducts(data);
       setOriginalProducts(data);
+      setLoading(false);
       console.log(data);
     };
 
@@ -56,7 +61,7 @@ const ProductList = ({ searchResults, resetProducts, isDescending, selectedCateg
   }, []);
 
   useEffect(() => {
-    if (searchResults.length) {
+    if (searchResults && searchResults.length) {
       const updatedProducts = searchResults
         .map((product) => ({
           ...product,
@@ -74,8 +79,10 @@ const ProductList = ({ searchResults, resetProducts, isDescending, selectedCateg
 
       setProducts(updatedProducts);
       setPage(1);
-    } else if (searchResults.length === 0) {
+      setSearchAttempted(true);
+    } else if (searchResults && searchResults.length === 0) {
       setProducts([]);
+      setSearchAttempted(true);
     }
   }, [searchResults]);
 
@@ -83,6 +90,7 @@ const ProductList = ({ searchResults, resetProducts, isDescending, selectedCateg
     if (resetProducts) {
       setProducts(originalProducts);
       setPage(1);
+      setSearchAttempted(false);
     }
   }, [resetProducts, originalProducts]);
 
@@ -130,13 +138,7 @@ const ProductList = ({ searchResults, resetProducts, isDescending, selectedCateg
     return (alcoholMl / price).toFixed(2);
   };
 
-  if (!products.length && searchResults.length === 0) {
-    return (
-      <NoResultsMessage>Inga resultat funna</NoResultsMessage>
-    );
-  }
-
-  if (!products.length) {
+  if (loading) {
     return (
       <StyledTable>
         <tbody>
@@ -147,6 +149,10 @@ const ProductList = ({ searchResults, resetProducts, isDescending, selectedCateg
         </tbody>
       </StyledTable>
     );
+  }
+
+  if (searchAttempted && products.length === 0) {
+    return <NoResultsMessage>Inga sökresultat funna</NoResultsMessage>;
   }
 
   return (

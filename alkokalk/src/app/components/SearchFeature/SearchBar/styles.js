@@ -21,7 +21,7 @@ export const StyledSearchBar = styled.form`
 `;
 
 export const StyledInput = styled.input`
-    padding: 10px;
+    padding: 8px;
     border: none;
     border-radius: 4px;
     font-size: 14px;
@@ -54,7 +54,7 @@ export const StyledInput = styled.input`
 
 export const RecentSearchesContainer = styled.div`
     position: absolute;
-    margin-top: 52px;
+    margin-top: 50px;
     background-color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 15px;
@@ -86,7 +86,7 @@ export const RecentSearchesContainer = styled.div`
 export const ClearButton = styled.button`
     margin-left: 10px;
     padding: 10px;
-    background-color: #ffffff;
+    background-color: #FFFCF0;
     color: #3c9054;
     font-weight: 600;
     border: none;
