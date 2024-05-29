@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   StyledNavigationBar,
   StyledLogoContainer,
@@ -8,7 +8,7 @@ import {
   StyledNavLinkSection,
   LinkDivider,
   DropdownBtn,
-  DropdownMenu
+  DropdownMenu,
 } from "./styles";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +16,7 @@ import Link from "next/link";
 const NavigationBar = () => {
   const [imageSize, setImageSize] = useState({ width: 180, height: 180 });
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1150) {
@@ -26,10 +26,10 @@ const NavigationBar = () => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize();
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const toggleDropdownMenu = () => {
@@ -57,12 +57,14 @@ const NavigationBar = () => {
           </StyledImageContainer>
           <StyledLogoText>ALKOKALK</StyledLogoText>
         </StyledLogoContainer>
-        <DropdownBtn 
-            onClick={toggleDropdownMenu}
-            className={isDropdownVisible ? 'active' : ''}
-            title="Display menu">
-        </DropdownBtn>
+        <DropdownBtn
+          onClick={toggleDropdownMenu}
+          className={isDropdownVisible ? "active" : ""}
+          title="Display menu"
+        ></DropdownBtn>
+
         <StyledNavLinkSection className="links">
+          <LinkDivider className="hideOnMobile" />
           {links.map((link, index) => (
             <React.Fragment key={index}>
               <Link href={link.href} style={{ textDecoration: "none" }}>
@@ -73,7 +75,7 @@ const NavigationBar = () => {
           ))}
         </StyledNavLinkSection>
       </StyledNavigationBar>
-      <DropdownMenu className={isDropdownVisible ? 'active' : ''}>
+      <DropdownMenu className={isDropdownVisible ? "active" : ""}>
         {links.map((link, index) => (
           <React.Fragment key={index}>
             <Link href={link.href} style={{ textDecoration: "none" }}>
