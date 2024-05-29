@@ -94,6 +94,9 @@ export const LinkDivider = styled.div`
     width: 100%;
     height: 1px;
     background-color: #e8e8e8;
+    &.hideOnMobile {
+      display: none;
+    }
   }
 `;
 
@@ -126,7 +129,7 @@ export const DropdownBtn = styled.button`
 export const DropdownMenu = styled.div`
   max-height: 0;
   overflow: hidden;
-  margin: 20px auto;
+
   flex-direction: column;
   width: 96%;
   background-color: white;
@@ -156,4 +159,5 @@ export const DropdownMenu = styled.div`
   &.active {
     max-height: 500px;
     transition: max-height 0.3s ease-in-out;
+    margin: 20px auto;
 `;

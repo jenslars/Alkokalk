@@ -65,6 +65,9 @@ export const StyledSelect = styled.select`
 export const StyledText = styled.p`
   font-size: 18px;
   color: #14242f;
+  @media (max-width: 782px) {
+    text-align: center;
+  }
 `;
 
 export const StyledHeader = styled.h2`
