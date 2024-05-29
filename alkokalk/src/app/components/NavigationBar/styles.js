@@ -12,7 +12,7 @@ export const StyledNavigationBar = styled.nav`
   width: 100%;
   padding: 0 20px;
 
-  @media (max-width: 1150px) {
+  @media (max-width: 760px) {
     align-items: center;
     padding: 0;
     margin-top: 0;
@@ -63,7 +63,7 @@ export const StyledNavLinkSection = styled.div`
   justify-content: flex-end;
   width: 500px;
   margin-right: 5%;
-  @media (max-width: 1150px) {
+  @media (max-width: 760px) {
     display: none;
   }
 `;
@@ -80,7 +80,7 @@ export const StyledNavLink = styled.span`
   }
   cursor: pointer;
 
-  @media (max-width: 1150px) {
+  @media (max-width: 760px) {
     margin: 10px 10px;
   }
 `;
@@ -90,7 +90,7 @@ export const LinkDivider = styled.div`
   height: 35px;
   background-color: #828282;
   margin: auto;
-  @media (max-width: 1150px) {
+  @media (max-width: 760px) {
     width: 100%;
     height: 1px;
     background-color: #e8e8e8;
@@ -117,7 +117,7 @@ export const DropdownBtn = styled.button`
     opacity: 1;
   }
 
-  @media (max-width: 1150px) {
+  @media (max-width: 760px) {
     display: flex;
   }
 
@@ -148,11 +148,11 @@ export const DropdownMenu = styled.div`
     margin-bottom: 0;
   }
 
-  @media (max-width: 1150px) {
+  @media (max-width: 760px) {
     display: flex;
   }
 
-  @media (min-width: 1150px) {
+  @media (min-width: 760px) {
     display: none;
   }
 

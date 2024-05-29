@@ -5,14 +5,14 @@ export const StyledSortFilterContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin: 20px 0;
-  margin-left: 60px;
+  margin-left: 40px;
   margin-bottom: 0px;
   padding: 10px;
-  @media (max-width: 1150px) {
+  @media (max-width: 760px) {
     margin-left: 0px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 760px) {
     align-items: center;
     margin-left: 0;
     padding: 10px 0;

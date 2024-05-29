@@ -33,7 +33,7 @@ export const SkeletonRow = () => (
 
 export const StyledTable = styled.table`
   width: calc(100% -120px);
-  margin: 0 60px;
+  margin: 0 40px;
   border-collapse: collapse;
   overflow-x: auto;
   padding: 10px;
