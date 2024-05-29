@@ -1,6 +1,8 @@
 :root {
   background-color: #fffcf0;
   color: #14242f;
+  font-family: 'Inter var', sans-serif;
+  font-weight: 500;
 }
 
 @media (prefers-color-scheme: dark) {
