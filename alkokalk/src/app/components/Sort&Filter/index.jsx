@@ -52,7 +52,7 @@ const SortFilter = ({ onSort, onFilter, onSearch, onReset }) => {
                         }),
                         option: (provided, state) => ({
                             ...provided,
-                            backgroundColor: state.isFocused ? '#235431' : '#fffcf0',
+                            backgroundColor: state.isFocused ? '#235431' : 'white',
                             color: state.isFocused ? '#fffcf0' : '#14242F',
                             cursor: 'pointer',
                             borderRadius: '25px'
