@@ -47,6 +47,11 @@ export const StyledSelect = styled.select`
     }
 `;
 
+export const StyledOption = styled.option`
+    background-color: green;
+    color: red;
+`;
+
 export const StyledText = styled.p`
     font-size: 18px;
     color: #14242F;
