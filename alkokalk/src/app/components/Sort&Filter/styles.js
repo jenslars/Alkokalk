@@ -42,6 +42,9 @@ export const StyledButton = styled.button`
   &:hover {
     background-color: #235431;
   }
+  @media (max-width: 760px;) {
+    margin-bottom: 10px;
+  }
 `;
 
 export const StyledSelect = styled.select`
@@ -59,11 +62,12 @@ export const StyledSelect = styled.select`
   }
   @media (max-width: 1150px) {
     padding: 5px 55px;
+    margin-bottom: 10px;
   }
 `;
 
 export const StyledText = styled.p`
-  font-size: 18px;
+  font-size: 1.1rem;
   color: #14242f;
   @media (max-width: 782px) {
     text-align: center;
@@ -74,4 +78,5 @@ export const StyledHeader = styled.h2`
   margin-bottom: 10px;
   font-size: 32px;
   color: #14242f;
+  margin-top: 0;
 `;

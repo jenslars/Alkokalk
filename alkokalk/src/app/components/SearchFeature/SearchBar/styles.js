@@ -97,7 +97,7 @@ export const ClearButton = styled.button`
 
   background-image: url("images/closeIcon.png");
   background-repeat: no-repeat;
-  background-position: 120px;
+  background-position: 130px;
   background-size: 15px;
   padding-right: 40px;
 
