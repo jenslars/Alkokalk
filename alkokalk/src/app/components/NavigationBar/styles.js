@@ -83,7 +83,6 @@ export const StyledNavLink = styled.span`
   @media (max-width: 1150px) {
     margin: 10px 10px;
   }
-
 `;
 
 export const LinkDivider = styled.div`
@@ -91,12 +90,10 @@ export const LinkDivider = styled.div`
   height: 35px;
   background-color: #828282;
   margin: auto;
-
   @media (max-width: 1150px) {
     width: 100%;
     height: 1px;
     background-color: #e8e8e8;
-    
   }
 `;
 
@@ -106,14 +103,14 @@ export const DropdownBtn = styled.button`
   height: 40px;
   width: 40px;
   border: none;
-  background-image: url('/images/dropdownMenuIcon.png');
+  background-image: url("/images/dropdownMenuIcon.png");
   background-size: 40px;
   background-repeat: no-repeat;
   margin-right: 5%;
   cursor: pointer;
-
+  transition: opacity 0.2s;
   &.active {
-    background-image: url('/images/closeNavIcon.png');
+    background-image: url("/images/closeNavIcon.png");
     opacity: 1;
   }
 
@@ -160,5 +157,3 @@ export const DropdownMenu = styled.div`
     max-height: 500px;
     transition: max-height 0.3s ease-in-out;
 `;
-
-
