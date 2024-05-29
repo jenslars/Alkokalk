@@ -1,6 +1,6 @@
 :root {
-  background-color: #FFFCF0;
-  color: #14242F;
+  background-color: #fffcf0;
+  color: #14242f;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -9,5 +9,10 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+}
+main {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
