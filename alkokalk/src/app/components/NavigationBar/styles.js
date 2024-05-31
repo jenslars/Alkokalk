@@ -68,9 +68,9 @@ export const StyledNavLinkSection = styled.div`
   }
 `;
 
-export const StyledNavLink = styled.a`
+export const StyledNavLink = styled.span`
   color: #14242f;
-  text-decoration: none !important;
+  text-decoration: none;
   transition: 0.3s;
   font-size: 1.4rem;
 
@@ -79,9 +79,7 @@ export const StyledNavLink = styled.a`
     transition: 0.3s;
   }
   cursor: pointer;
-  &.active {
-    font-weight: 500;
-  }
+
   @media (max-width: 760px) {
     margin: 10px 10px;
   }
