@@ -9,6 +9,8 @@ import {
   ClearButton,
 } from "./styles";
 
+/*Search bar component for the website that stores searches
+and displays them in a list*/
 const SearchBar = ({ onSearch, onReset }) => {
   const [searchHistory, setSearchHistory] = useState([]);
   const [isFocused, setIsFocused] = useState(false);

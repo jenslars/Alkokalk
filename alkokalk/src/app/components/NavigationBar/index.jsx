@@ -13,6 +13,7 @@ import {
 } from "./styles";
 import Image from "next/image";
 import Link from "next/link";
+//Navbar component for the website
 const NavigationBar = () => {
   const [imageSize, setImageSize] = useState({ width: 180, height: 180 });
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);

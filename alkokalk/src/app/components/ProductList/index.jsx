@@ -9,7 +9,7 @@ import {
 } from "./styles";
 import { setItem, getItem, setMeta, getMeta } from "@/app/utils/indexedDB";
 import { useIntersectionObserver } from "./intersectionObserver";
-
+//Renders a table with product information from the API
 const ProductList = ({
   searchResults,
   resetProducts,

@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+/*Ensures that the website works swiftly by adding new 
+content at the bottom of scroll*/
 export function useIntersectionObserver({
   target,
   onIntersect,
