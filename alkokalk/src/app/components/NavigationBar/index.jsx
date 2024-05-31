@@ -18,7 +18,7 @@ const NavigationBar = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   const router = useRouter();
-  
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1150) {
@@ -28,7 +28,6 @@ const NavigationBar = () => {
       }
     };
 
-
     if (typeof window !== "undefined") {
       window.addEventListener("resize", handleResize);
       handleResize();
@@ -37,11 +36,6 @@ const NavigationBar = () => {
       if (typeof window !== "undefined")
         window.removeEventListener("resize", handleResize);
     };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
-
   }, []);
 
   const toggleDropdownMenu = () => {

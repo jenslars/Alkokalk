@@ -1,12 +1,21 @@
 import { useEffect, useState, useRef } from "react";
 import getSystembolagetData from "@/app/api/getSystembolagetData";
-import { StyledTable, StyledHeader, StyledCell, SkeletonRow, NoResultsMessage } from "./styles";
-import { setItem, getItem, setMeta, getMeta } from '@/app/utils/indexedDB';
+import {
+  StyledTable,
+  StyledHeader,
+  StyledCell,
+  SkeletonRow,
+  NoResultsMessage,
+} from "./styles";
+import { setItem, getItem, setMeta, getMeta } from "@/app/utils/indexedDB";
 import { useIntersectionObserver } from "./intersectionObserver";
-import Image from "next/image";
-import Link from "next/link";
 
-const ProductList = ({ searchResults, resetProducts, isDescending, selectedCategory }) => {
+const ProductList = ({
+  searchResults,
+  resetProducts,
+  isDescending,
+  selectedCategory,
+}) => {
   const [products, setProducts] = useState([]);
   const [originalProducts, setOriginalProducts] = useState([]);
   const [searchAttempted, setSearchAttempted] = useState(false);
@@ -18,7 +27,7 @@ const ProductList = ({ searchResults, resetProducts, isDescending, selectedCateg
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); 
+      setLoading(true);
       const lastFetch = await getMeta("lastFetch");
       const now = Date.now();
 
@@ -101,8 +110,10 @@ const ProductList = ({ searchResults, resetProducts, isDescending, selectedCateg
 
   useEffect(() => {
     if (selectedCategory) {
-      const filteredProducts = originalProducts.filter(product =>
-        product.categoryLevel1.toLowerCase() === selectedCategory.toLowerCase()
+      const filteredProducts = originalProducts.filter(
+        (product) =>
+          product.categoryLevel1.toLowerCase() ===
+          selectedCategory.toLowerCase()
       );
       setProducts(filteredProducts);
       setPage(1);
