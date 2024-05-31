@@ -32,6 +32,7 @@ const NavigationBar = () => {
       window.addEventListener("resize", handleResize);
       handleResize();
     }
+
     return () => {
       if (typeof window !== "undefined")
         window.removeEventListener("resize", handleResize);
