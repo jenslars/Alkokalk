@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router'; // Import useRouter from Next.js
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router"; // Import useRouter from Next.js
 import {
   StyledNavigationBar,
   StyledLogoContainer,
@@ -9,7 +9,7 @@ import {
   StyledNavLinkSection,
   LinkDivider,
   DropdownBtn,
-  DropdownMenu
+  DropdownMenu,
 } from "./styles";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,10 +28,15 @@ const NavigationBar = () => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
-    handleResize();
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+      handleResize();
+    }
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      if (typeof window !== "undefined")
+        window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const toggleDropdownMenu = () => {
@@ -59,22 +64,29 @@ const NavigationBar = () => {
           </StyledImageContainer>
           <StyledLogoText>ALKOKALK</StyledLogoText>
         </StyledLogoContainer>
-        <DropdownBtn 
-            onClick={toggleDropdownMenu}
-            className={isDropdownVisible ? 'active' : ''}
-            title="Display menu">
-        </DropdownBtn>
+        <DropdownBtn
+          onClick={toggleDropdownMenu}
+          className={isDropdownVisible ? "active" : ""}
+          title="Display menu"
+        ></DropdownBtn>
         <StyledNavLinkSection className="links">
           {links.map((link, index) => (
             <React.Fragment key={index}>
               {link.title !== "Github" ? (
                 <Link href={link.href} passHref>
-                  <StyledNavLink className={router.pathname === link.href ? 'active' : ''}>
+                  <StyledNavLink
+                    className={router.pathname === link.href ? "active" : ""}
+                  >
                     {link.title}
                   </StyledNavLink>
                 </Link>
               ) : (
-                <a href={link.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none" }}
+                >
                   <StyledNavLink>{link.title}</StyledNavLink>
                 </a>
               )}
@@ -83,17 +95,24 @@ const NavigationBar = () => {
           ))}
         </StyledNavLinkSection>
       </StyledNavigationBar>
-      <DropdownMenu className={isDropdownVisible ? 'active' : ''}>
+      <DropdownMenu className={isDropdownVisible ? "active" : ""}>
         {links.map((link, index) => (
           <React.Fragment key={index}>
             {link.title !== "Github" ? (
               <Link href={link.href} passHref>
-                <StyledNavLink className={router.pathname === link.href ? 'active' : ''}>
+                <StyledNavLink
+                  className={router.pathname === link.href ? "active" : ""}
+                >
                   {link.title}
                 </StyledNavLink>
               </Link>
             ) : (
-              <a href={link.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
                 <StyledNavLink>{link.title}</StyledNavLink>
               </a>
             )}
