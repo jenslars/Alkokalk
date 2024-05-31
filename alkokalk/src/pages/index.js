@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import NavigationBar from "./components/NavigationBar";
-import SortFilter from "./components/Sort&Filter";
-import ProductList from "./components/ProductList";
+import NavigationBar from "../app/components/NavigationBar";
+import SortFilter from "../app/components/Sort&Filter";
+import ProductList from "../app/components/ProductList";
 
 export default function Home() {
   const [searchResults, setSearchResults] = useState([]);

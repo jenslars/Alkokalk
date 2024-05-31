@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import {
   StyledNavigationBar,
   StyledLogoContainer,
@@ -12,11 +13,12 @@ import {
 } from "./styles";
 import Image from "next/image";
 import Link from "next/link";
-
 const NavigationBar = () => {
   const [imageSize, setImageSize] = useState({ width: 180, height: 180 });
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
+  const router = useRouter();
+  
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1150) {
@@ -26,10 +28,20 @@ const NavigationBar = () => {
       }
     };
 
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+      handleResize();
+    }
+    return () => {
+      if (typeof window !== "undefined")
+        window.removeEventListener("resize", handleResize);
+    };
     window.addEventListener("resize", handleResize);
     handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
+
   }, []);
 
   const toggleDropdownMenu = () => {
@@ -62,14 +74,28 @@ const NavigationBar = () => {
           className={isDropdownVisible ? "active" : ""}
           title="Display menu"
         ></DropdownBtn>
-
         <StyledNavLinkSection className="links">
           <LinkDivider className="hideOnMobile" />
           {links.map((link, index) => (
             <React.Fragment key={index}>
-              <Link href={link.href} style={{ textDecoration: "none" }}>
-                <StyledNavLink>{link.title}</StyledNavLink>
-              </Link>
+              {link.title !== "Github" ? (
+                <Link href={link.href} passHref>
+                  <StyledNavLink
+                    className={router.pathname === link.href ? "active" : ""}
+                  >
+                    {link.title}
+                  </StyledNavLink>
+                </Link>
+              ) : (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none" }}
+                >
+                  <StyledNavLink>{link.title}</StyledNavLink>
+                </a>
+              )}
               <LinkDivider />
             </React.Fragment>
           ))}
@@ -78,9 +104,24 @@ const NavigationBar = () => {
       <DropdownMenu className={isDropdownVisible ? "active" : ""}>
         {links.map((link, index) => (
           <React.Fragment key={index}>
-            <Link href={link.href} style={{ textDecoration: "none" }}>
-              <StyledNavLink>{link.title}</StyledNavLink>
-            </Link>
+            {link.title !== "Github" ? (
+              <Link href={link.href} passHref>
+                <StyledNavLink
+                  className={router.pathname === link.href ? "active" : ""}
+                >
+                  {link.title}
+                </StyledNavLink>
+              </Link>
+            ) : (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <StyledNavLink>{link.title}</StyledNavLink>
+              </a>
+            )}
             <LinkDivider />
           </React.Fragment>
         ))}
