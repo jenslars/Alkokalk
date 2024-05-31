@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router"; // Import useRouter from Next.js
+import { useRouter } from "next/router";
 import {
   StyledNavigationBar,
   StyledLogoContainer,
@@ -13,12 +13,12 @@ import {
 } from "./styles";
 import Image from "next/image";
 import Link from "next/link";
-
 const NavigationBar = () => {
   const [imageSize, setImageSize] = useState({ width: 180, height: 180 });
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const router = useRouter(); // Use the useRouter hook
 
+  const router = useRouter();
+  
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1150) {
@@ -28,15 +28,20 @@ const NavigationBar = () => {
       }
     };
 
+
     if (typeof window !== "undefined") {
       window.addEventListener("resize", handleResize);
       handleResize();
     }
-
     return () => {
       if (typeof window !== "undefined")
         window.removeEventListener("resize", handleResize);
     };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+
   }, []);
 
   const toggleDropdownMenu = () => {
@@ -70,6 +75,7 @@ const NavigationBar = () => {
           title="Display menu"
         ></DropdownBtn>
         <StyledNavLinkSection className="links">
+          <LinkDivider className="hideOnMobile" />
           {links.map((link, index) => (
             <React.Fragment key={index}>
               {link.title !== "Github" ? (

@@ -33,9 +33,10 @@ export const SkeletonRow = () => (
 
 export const StyledTable = styled.table`
   width: calc(100% -120px);
-  margin: 0 60px;
+  margin: 0 40px;
   border-collapse: collapse;
   overflow-x: auto;
+  padding: 10px;
 
   tr:nth-child(even) {
     background-color: #fff7d6;
@@ -147,8 +148,8 @@ export const StyledHeader = styled.th`
 `;
 
 export const NoResultsMessage = styled.div`
-    text-align: center;
-    padding: 20px;
-    font-size: 18px;
-    color: #ff0000;
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #ff0000;
 `;
