@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import {
@@ -17,10 +18,19 @@ import Link from "next/link";
 const NavigationBar = () => {
   const [imageSize, setImageSize] = useState({ width: 180, height: 180 });
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
 
   const router = useRouter();
 
   useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hasMounted) {
+      return;
+    }
+
     const handleResize = () => {
       if (window.innerWidth < 1150) {
         setImageSize({ width: 120, height: 120 });
@@ -36,8 +46,13 @@ const NavigationBar = () => {
     return () => {
       if (typeof window !== "undefined")
         window.removeEventListener("resize", handleResize);
+      handleResize();
     };
-  }, []);
+  }, [hasMounted]);
+
+  if (!hasMounted) {
+    return null;
+  }
 
   const toggleDropdownMenu = () => {
     setIsDropdownVisible(!isDropdownVisible);
