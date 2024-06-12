@@ -2,12 +2,21 @@
 
 This is a simple project that calculates the amount of alcohol in a drink based on the volume of alcohol and the volume of the drink. It is a smaller course project to learn JS Frameworks better.
 
+## Reasons for choosing react.js over other frameworks
+
+We chose React over other frameworks such as Vue and Angular because of its component-based architecture and large ecosystem supported by a big community. While Vue is easier to learn and Angular provides a comprehensive framework, React's flexibility and popularity in the industry made it the preferred choice for a scalable and maintainable application.
+
+## Dependencies
+next
+react
+react-dom
+
 ## Getting Started
 
 First, install the dependencies:
 
 ```bash
-npm install
+npm install next react react-dom
 # or
 yarn
 # or
@@ -15,6 +24,8 @@ pnpm
 # or
 bun
 ```
+
+
 
 Then, build the project:
 
